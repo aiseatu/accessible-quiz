@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AnswerObject } from '../App';
-import { Wrapper, ButtonWrapper } from './QuestionCard.styles';
+import { Wrapper, InputWrapper } from './QuestionCard.styles';
 
 type Props = {
   question: string;
   answers: string[];
-  callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  callback: (arg0: string) => void;
   userAnswer: AnswerObject | undefined;
   questionNr: number;
   totalQuestions: number;
@@ -18,30 +18,48 @@ const QuestionCard: React.FC<Props> = ({
   questionNr,
   totalQuestions,
   userAnswer,
-}) => (
-  <Wrapper>
-    <p className="number">
-      Question: {questionNr} / {totalQuestions}{' '}
-    </p>
-    <p dangerouslySetInnerHTML={{ __html: question }} />
-    <div>
-      {answers.map((answer, index) => (
-        <div key={index}>
-          <ButtonWrapper
-            key={answer}
-            correct={userAnswer?.correctAnswer === answer}
-            userClicked={userAnswer?.answer === answer}>
-            <button
-              disabled={userAnswer ? true : false}
-              value={answer}
-              onClick={callback}>
-              <span dangerouslySetInnerHTML={{ __html: answer }} />
-            </button>
-          </ButtonWrapper>
-        </div>
-      ))}
-    </div>
-  </Wrapper>
-);
+}) => {
+  const [selected, setSelected] = useState('');
+  const onRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value);
+    setSelected(e.currentTarget.value);
+  };
+  const onQuestionSubmit = () => {
+    callback(selected);
+  };
+  return (
+    <Wrapper>
+      <p className="number">
+        Question: {questionNr} / {totalQuestions}{' '}
+      </p>
+      <fieldset>
+        <legend dangerouslySetInnerHTML={{ __html: question }} />
+
+        {answers.map((answer, index) => (
+          <div key={index}>
+            <InputWrapper key={answer} userClicked={selected === answer}>
+              <input
+                type="radio"
+                name={`question${questionNr}`}
+                id={`option${index}`}
+                value={answer}
+                onChange={onRadioChange}
+                checked={selected === answer}></input>
+              <label htmlFor={`option${index}`}>
+                <span dangerouslySetInnerHTML={{ __html: answer }} />
+              </label>
+            </InputWrapper>
+          </div>
+        ))}
+        <button
+          disabled={userAnswer ? true : false}
+          type="submit"
+          onClick={onQuestionSubmit}>
+          Submit
+        </button>
+      </fieldset>
+    </Wrapper>
+  );
+};
 
 export default QuestionCard;

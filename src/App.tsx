@@ -38,10 +38,11 @@ function App() {
     setLoading(false);
   };
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const checkAnswer = (selected: any) => {
     if (!gameOver) {
       // user answer
-      const answer = e.currentTarget.value;
+      const answer = selected;
+      console.log(answer);
       //check answer
       const correct = questions[number].correct_answer === answer;
       if (correct) setScore((prev) => prev + 1);
@@ -70,7 +71,7 @@ function App() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>React Quiz</h1>
+        <h1>Quiz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <button className="start" onClick={startTrivia}>
             Start
