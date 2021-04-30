@@ -21,7 +21,6 @@ const QuestionCard: React.FC<Props> = ({
 }) => {
   const [selected, setSelected] = useState('');
   const onRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
     setSelected(e.currentTarget.value);
   };
   const onQuestionSubmit = () => {
