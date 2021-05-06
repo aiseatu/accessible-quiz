@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { fetchQuizQuestions } from './API';
+import movies from './images/movies.jpeg';
 //component
 import QuestionCard from './components/QuestionCard';
 //types
@@ -14,7 +15,7 @@ export type AnswerObject = {
   correctAnswer: string;
 };
 
-const TOTAL_QUESTIONS = 10;
+const TOTAL_QUESTIONS = 3;
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -70,11 +71,16 @@ function App() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>Test Your Knowledge on Films!</h1>
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className="start" onClick={startTrivia}>
-            Start
-          </button>
+        <h1>Films Travia!</h1>
+        {gameOver ? (
+          <div className="landing">
+            <button className="start" onClick={startTrivia}>
+              Start
+            </button>
+            <div>
+              <img src={movies} alt="movie posters"></img>
+            </div>
+          </div>
         ) : null}
         {!gameOver ? <p className="score">Score: {score} </p> : null}
         {loading ? <p>Loading Questions...</p> : null}
@@ -92,7 +98,7 @@ function App() {
         {!gameOver &&
         !loading &&
         userAnswers.length === number + 1 &&
-        number !== TOTAL_QUESTIONS - 1 ? (
+        number !== TOTAL_QUESTIONS ? (
           <button className="next" onClick={nextQuestion}>
             Next Question
           </button>

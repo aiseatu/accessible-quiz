@@ -34,13 +34,17 @@ export const GlobalStyle = createGlobalStyle`
     border: 1px solid transparent;
     font-size: 1rem;
     border-radius: 0.25rem;
+    margin: 20px 0 20px 0;
   }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  .landing {
+    text-align: center;
+  }
 
   > p {
     color: #fff;
@@ -54,10 +58,15 @@ export const Wrapper = styled.div`
 
   h1 {
     font-family: 'Permanent Marker', sans-serif;
-    font-size: 3rem;
+    font-size: 4rem;
     color: #0071eb;
     text-align: center;
     margin: 20px;
+  }
+
+  img {
+    max-width: 600px;
+    height: auto;
   }
 
   .start {
