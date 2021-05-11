@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/accessible-quiz/static/js/main.7b11280b.chunk.js",
+    "main.js.map": "/accessible-quiz/static/js/main.7b11280b.chunk.js.map",
+    "runtime-main.js": "/accessible-quiz/static/js/runtime-main.c88a85eb.js",
+    "runtime-main.js.map": "/accessible-quiz/static/js/runtime-main.c88a85eb.js.map",
+    "static/js/2.372407d0.chunk.js": "/accessible-quiz/static/js/2.372407d0.chunk.js",
+    "static/js/2.372407d0.chunk.js.map": "/accessible-quiz/static/js/2.372407d0.chunk.js.map",
+    "index.html": "/accessible-quiz/index.html",
+    "static/js/2.372407d0.chunk.js.LICENSE.txt": "/accessible-quiz/static/js/2.372407d0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c88a85eb.js",
+    "static/js/2.372407d0.chunk.js",
+    "static/js/main.7b11280b.chunk.js"
+  ]
+}
