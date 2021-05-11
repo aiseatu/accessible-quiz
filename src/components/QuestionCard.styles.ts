@@ -1,6 +1,8 @@
+/* eslint-disable no-octal-escape */
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  max-width: 1100px;
   text-align: center;
   p {
     font-size: 1rem;
@@ -16,6 +18,8 @@ export const Wrapper = styled.div`
 
 type InputWrapperProps = {
   userClicked: boolean;
+  right: boolean;
+  wrong: boolean;
 };
 
 export const InputWrapper = styled.div<InputWrapperProps>`
@@ -30,7 +34,14 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     font-weight: 400;
     user-select: none;
     vertical-align: middle;
-    border: ${({ userClicked }) => (userClicked ? '2px dotted' : '1px solid')};
+    border: ${({ userClicked, right, wrong }) =>
+      right
+        ? '3px solid #28A745'
+        : wrong
+        ? '3px solid #DC3545'
+        : userClicked
+        ? '2px dotted'
+        : '1px solid'};
     font-size: 1rem;
     border-radius: 0.25rem;
     max-width: 600px;
@@ -41,6 +52,15 @@ export const InputWrapper = styled.div<InputWrapperProps>`
       opacity: 0.8;
     }
   }
+  .right {
+    margin-left: 3px;
+    display: ${({ right }) => (right ? 'inline-block' : 'none')};
+  }
+  .wrong {
+    margin-left: 3px;
+    display: ${({ wrong }) => (wrong ? 'inline-block' : 'none')};
+  }
+
   input {
     opacity: 0;
   }

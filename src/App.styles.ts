@@ -34,17 +34,32 @@ export const GlobalStyle = createGlobalStyle`
     border: 1px solid transparent;
     font-size: 1rem;
     border-radius: 0.25rem;
-    margin: 20px 0 20px 0;
+    margin: 10px 0 10px 0;
+  }
+
+  button:focus {
+    outline: '2px dashed'
+  }
+
+  button:disabled {
+    border-color: #848484;
+    background-color: #757575;
+  }
+
+  .sr-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
   }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  .landing {
-    text-align: center;
-  }
+  text-align: center;
 
   > p {
     color: #fff;
@@ -52,16 +67,17 @@ export const Wrapper = styled.div`
 
   .score {
     color: #000;
-    font-size: 2rem;
+    font-size: 1.2rem;
     margin: 0;
+    font-family: 'Permanent Marker', sans-serif;
   }
 
   h1 {
     font-family: 'Permanent Marker', sans-serif;
-    font-size: 4rem;
+    font-size: 3rem;
     color: #0071eb;
     text-align: center;
-    margin: 20px;
+    margin: 10px;
   }
 
   img {
@@ -69,7 +85,7 @@ export const Wrapper = styled.div`
     height: auto;
   }
 
-  .start {
+  .next {
     max-width: 200px;
   }
 `;

@@ -3,8 +3,9 @@ import { fetchQuizQuestions } from './API';
 import movies from './images/movies.jpeg';
 //component
 import QuestionCard from './components/QuestionCard';
+import Landing from './components/Landing';
 //types
-import { QuestionState, Difficulty } from './API';
+import { QuestionState } from './API';
 
 import { GlobalStyle, Wrapper } from './App.styles';
 
@@ -15,7 +16,7 @@ export type AnswerObject = {
   correctAnswer: string;
 };
 
-const TOTAL_QUESTIONS = 3;
+//const TOTAL_QUESTIONS = 3;
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -24,14 +25,22 @@ function App() {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [qLength, setQLength] = useState<number>(5);
+  // const [difficulty, setDifficulty] = useState<string>('easy');
 
-  const startTrivia = async () => {
+  // const onTotalQChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setTotalQ(Number(e.currentTarget.value));
+  // };
+
+  // const onDifficultyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setDifficulty(e.currentTarget.value);
+  // };
+
+  const startTrivia = async (totalQ: number, difficulty: string) => {
     setLoading(true);
     setGameOver(false);
-    const newQuestions = await fetchQuizQuestions(
-      TOTAL_QUESTIONS,
-      Difficulty.EASY
-    );
+    const newQuestions = await fetchQuizQuestions(totalQ, difficulty);
+    setQLength(totalQ);
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -60,7 +69,7 @@ function App() {
 
   const nextQuestion = () => {
     const nextQuestion = number + 1;
-    if (nextQuestion === TOTAL_QUESTIONS) {
+    if (nextQuestion === qLength) {
       setGameOver(true);
     } else {
       setNumber(nextQuestion);
@@ -73,21 +82,42 @@ function App() {
       <Wrapper>
         <h1>Films Travia!</h1>
         {gameOver ? (
-          <div className="landing">
-            <button className="start" onClick={startTrivia}>
-              Start
-            </button>
-            <div>
-              <img src={movies} alt="movie posters"></img>
-            </div>
-          </div>
-        ) : null}
+          <Landing start={startTrivia} />
+        ) : // <div className="landing">
+        //   <div>
+        //     <label htmlFor="totalQ">
+        //       How many questions would you like to have?
+        //     </label>
+        //     <select id="totalQ" name="select" onChange={onTotalQChange}>
+        //       <option value="5">5</option>
+        //       <option value="10">10</option>
+        //       <option value="15">15</option>
+        //     </select>
+        //   </div>
+        //   <div>
+        //     <label htmlFor="difficulty">Which level of difficulty?</label>
+        //     <select
+        //       id="difficulty"
+        //       name="select"
+        //       onChange={onDifficultyChange}>
+        //       <option value="easy">Easy</option>
+        //       <option value="medium">Medium</option>
+        //       <option value="hard">Hard</option>
+        //     </select>
+        //   </div>
+
+        //   <button className="start" onClick={startTrivia}>
+        //     Start
+        //   </button>
+
+        // </div>
+        null}
         {!gameOver ? <p className="score">Score: {score} </p> : null}
         {loading ? <p>Loading Questions...</p> : null}
         {!loading && !gameOver ? (
           <QuestionCard
             questionNr={number + 1}
-            totalQuestions={TOTAL_QUESTIONS}
+            totalQuestions={qLength}
             question={questions[number].question}
             answers={questions[number].answers}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
@@ -98,10 +128,12 @@ function App() {
         {!gameOver &&
         !loading &&
         userAnswers.length === number + 1 &&
-        number !== TOTAL_QUESTIONS ? (
-          <button className="next" onClick={nextQuestion}>
-            Next Question
-          </button>
+        number !== qLength ? (
+          <div>
+            <button className="next" onClick={nextQuestion}>
+              Next Question
+            </button>
+          </div>
         ) : null}
       </Wrapper>
     </>

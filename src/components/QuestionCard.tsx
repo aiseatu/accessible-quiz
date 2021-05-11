@@ -36,7 +36,17 @@ const QuestionCard: React.FC<Props> = ({
 
         {answers.map((answer, index) => (
           <div key={index}>
-            <InputWrapper key={answer} userClicked={selected === answer}>
+            <InputWrapper
+              key={answer}
+              userClicked={selected === answer}
+              right={
+                selected === answer && userAnswer?.correctAnswer === answer
+              }
+              wrong={
+                selected === answer &&
+                userAnswer !== undefined &&
+                userAnswer.correctAnswer !== answer
+              }>
               <input
                 type="radio"
                 name={`question${questionNr}`}
@@ -44,8 +54,16 @@ const QuestionCard: React.FC<Props> = ({
                 value={answer}
                 onChange={onRadioChange}
                 checked={selected === answer}></input>
-              <label htmlFor={`option${index}`}>
+              <label htmlFor={`option${index}`} aria-live="polite">
                 <span dangerouslySetInnerHTML={{ __html: answer }} />
+                <span className="right">
+                  <span aria-hidden="true">&#10004;</span>
+                  <span className="sr-only">correct</span>
+                </span>
+                <span className="wrong">
+                  <span aria-hidden="true">&#10008;</span>
+                  <span className="sr-only">incorrect</span>
+                </span>
               </label>
             </InputWrapper>
           </div>
