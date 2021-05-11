@@ -1,6 +1,6 @@
 <p align="center">
-  <h2 align="center">Accessible Quiz</h2>
-  <a href="https://aiseatu.github.io/accessible-quiz/">View Production Demo Here</a>
+  <h2 align="center">Accessible Quiz </h2>
+  <h3 align="center"><a href="https://aiseatu.github.io/accessible-quiz/">View Production Demo Here</a></h3>
   <p align="center">
     A simple Quiz Game that meets WCAG 2.0 requirements
   </p>
@@ -12,6 +12,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#accessibility-features-and-considerations">Accessibility features and considerations</a></li>
       </ul>
     </li>
     <li>
@@ -31,6 +32,16 @@
 - Typescript
 
 - Styled Components
+
+### Accessibility features and considerations 
+
+- Color contrast (<a href="https://webaim.org/resources/contrastchecker/">WebAIM checker</a>)
+
+- Custom radio buttons
+
+- Screen reader only texts along with non-color based information provider
+
+- Keyboard navigation & focus styles
 
 <!-- GETTING STARTED -->
 
