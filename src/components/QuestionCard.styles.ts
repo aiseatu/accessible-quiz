@@ -64,4 +64,10 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   input {
     opacity: 0;
   }
+  input:focus {
+    outline: none !important;
+  }
+  input:focus + label {
+    outline: 2px solid #a61d37;
+  }
 `;

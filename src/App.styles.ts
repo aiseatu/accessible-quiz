@@ -38,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button:focus {
-    outline: '2px dashed'
+    outline: 3px solid #a61d37;
   }
 
   button:disabled {
