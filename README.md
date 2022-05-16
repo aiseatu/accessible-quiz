@@ -1,6 +1,6 @@
 <p align="center">
   <h2 align="center">Accessible Quiz </h2>
-  <h3 align="center"><a href="https://aiseatu.github.io/accessible-quiz/">View Production Demo Here</a></h3>
+  <h3 align="center"><a href="https://xiaokangtang.github.io/accessible-quiz/">View Production Demo Here</a></h3>
   <p align="center">
     A simple Quiz Game that meets WCAG 2.0 requirements
   </p>
