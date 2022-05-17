@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { fetchQuizQuestions } from './API';
-import movies from './images/movies.jpeg';
 //component
 import QuestionCard from './components/QuestionCard';
 import Landing from './components/Landing';
@@ -80,38 +79,8 @@ function App() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>Films Travia!</h1>
-        {gameOver ? (
-          <Landing start={startTrivia} />
-        ) : // <div className="landing">
-        //   <div>
-        //     <label htmlFor="totalQ">
-        //       How many questions would you like to have?
-        //     </label>
-        //     <select id="totalQ" name="select" onChange={onTotalQChange}>
-        //       <option value="5">5</option>
-        //       <option value="10">10</option>
-        //       <option value="15">15</option>
-        //     </select>
-        //   </div>
-        //   <div>
-        //     <label htmlFor="difficulty">Which level of difficulty?</label>
-        //     <select
-        //       id="difficulty"
-        //       name="select"
-        //       onChange={onDifficultyChange}>
-        //       <option value="easy">Easy</option>
-        //       <option value="medium">Medium</option>
-        //       <option value="hard">Hard</option>
-        //     </select>
-        //   </div>
-
-        //   <button className="start" onClick={startTrivia}>
-        //     Start
-        //   </button>
-
-        // </div>
-        null}
+        <h1>Films Trivia!</h1>
+        {gameOver ? <Landing start={startTrivia} /> : null}
         {!gameOver ? <p className="score">Score: {score} </p> : null}
         {loading ? <p>Loading Questions...</p> : null}
         {!loading && !gameOver ? (
